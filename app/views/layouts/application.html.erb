@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TwitterArafat</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+
+    <div class="navbar-hearder">
+      <%=link_to 'Tweeter@ Yeasir Arafat',root_path, class: 'navbar-brand'%>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li>
+<%=link_to 'Compose New Tweet', new_tweet_path%>
+      </li>
+<li>
+<%=link_to 'All Users', all_users_path %>
+</li>
+    </ul>
+
+<ul class="nav navbar-nav navbar-right">
+      <%if user_signed_in?%>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspop="true"
+        aria-expanded ="fasle">
+        Hellow, <%= current_user.name %>!<span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <%=link_to 'Sign Out',destroy_user_session_path, method: :delete %>
+        </li>
+      </ul>
+    </li>
+    <%else%>
+    <li>
+      <%link_to 'Sign In', new_user_session_path%>
+    </li>
+
+  </li>
+  <%end%>
+</ul>
+
+</nav>
+
+<div class="container-fluid">
+  <%= yield %>
+</div>
+</body>
+</html>
